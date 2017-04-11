@@ -50,6 +50,34 @@ snippet Inc "Inserts the localfile's header" b
 $0
 endsnippet
 
+snippet header
+/**
+ * Name: ${1:`!v expand('%:t')`}
+ * Description: ${2:TODO}
+ * Created on: `!v strftime('%d-%m-%Y')`
+ * Last Modified: `!v strftime('%d-%m-%Y')`
+ * Author: Adam Szczerbiak (szczerbiakadam@gmail.com)
+ * License: ${3:MIT}
+ */
+
+$0
+endsnippet
+
+snippet hguard "Adds a header guard"
+#ifndef ${1:`!p
+if not snip.c:
+  import string
+  snip.rv = re.sub(r'[^A-Za-z0-9]+','_', snip.fn).upper()
+else:
+  snip.rv = snip.c
+`}
+#define $1
+
+${2:/* code */}
+
+#endif // $1
+endsnippet
+
 snippet main "Inserts a parameterless main() method" b
 int main()
 {
@@ -66,6 +94,13 @@ int main(int argc, char **argv)
 
   return 0;
 }
+endsnippet
+
+snippet struct "Inserts a struct" b
+struct ${1:Name}
+{
+  ${0:/* code */}
+};
 endsnippet
 
 snippet while "Inserts a while loop" b
