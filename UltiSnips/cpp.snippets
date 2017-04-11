@@ -1,0 +1,47 @@
+extends c
+
+snippet cin "Inserts a std::cin instruction"
+std::cin >> ${1:buffer};
+endsnippet
+
+snippet class "Inserts a class" b
+class ${1:`!p snip.rv = snip.basename`}
+{
+ public:
+  ${1/(\w+).*/$1/}(${2:args});
+  virtual ~${1/(\w+).*/$1/}();
+
+ private:
+  ${2: /* code */}
+};
+
+$0
+endsnippet
+
+snippet cout "Inserts a std::cout instruction"
+std::cout << ${1:buffer};
+endsnippet
+
+snippet coute "Inserts a std::cout with std::endl" b
+std::cout << ${1:buffer} << std::endl;
+${0}
+endsnippet
+
+snippet endl "Inserts 'std::endl'"
+std::endl
+endsnippet
+
+snippet map "Inserts a std::map<k,v>"
+std::map< ${1:key}, ${2:value} > m$0;
+endsnippet
+
+snippet ns "Inserts a namespace" b
+namespace ${1:name}
+{
+$0
+} // namespace $1
+endsnippet
+
+snippet vector "Inserts a std::vector<type>"
+std::vector< ${1:int} > v$0;
+endsnippet
