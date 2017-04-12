@@ -1,4 +1,5 @@
 extends c
+priority 1
 
 snippet cin "Inserts a std::cin instruction"
 std::cin >> ${1:buffer};
@@ -24,11 +25,15 @@ endsnippet
 
 snippet coute "Inserts a std::cout with std::endl" b
 std::cout << ${1:buffer} << std::endl;
-${0}
 endsnippet
 
 snippet endl "Inserts 'std::endl'"
 std::endl
+endsnippet
+
+snippet inc "Inserts the #include <...> snippet without the .h extension" b
+#include <${1:iostream}>
+$0
 endsnippet
 
 snippet map "Inserts a std::map<k,v>"
