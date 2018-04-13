@@ -36,6 +36,10 @@ snippet inc "Inserts the #include <...> snippet without the .h extension" b
 $0
 endsnippet
 
+snippet Inc "Inserts the complementing hpp file" b
+#include "`!p snip.rv = snip.basename + ".hpp"`"
+endsnippet
+
 snippet map "Inserts a std::map<k,v>"
 std::map< ${1:key}, ${2:value} > m$0;
 endsnippet
