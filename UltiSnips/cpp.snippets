@@ -2,7 +2,7 @@ extends c
 priority 1
 
 snippet cin "Inserts a std::cin instruction"
-std::cin >> ${1:buffer};
+std::cin >> ${0};
 endsnippet
 
 snippet class "Inserts a class" b
@@ -20,15 +20,70 @@ $0
 endsnippet
 
 snippet cout "Inserts a std::cout instruction"
-std::cout << ${1:buffer};
+std::cout << ${1}
 endsnippet
 
-snippet coute "Inserts a std::cout with std::endl" b
-std::cout << ${1:buffer} << std::endl;
+snippet couT "Inserts a std::cout instruction with quote marks"
+std::cout << "${1}"
+endsnippet
+
+snippet coute "Inserts a std::cout with std::endl"
+std::cout << ${1} << std::endl;
+endsnippet
+
+snippet couTe "Inserts a std::cout with quote marks terminated by std::endl"
+std::cout << "${1}" << std::endl;
+endsnippet
+
+snippet cerr "Inserts a std::cerr instruction"
+std::cerr << ${1}
+endsnippet
+
+snippet cerR "Inserts a std::cerr with quote marks"
+std::cerr << "${1}"
+endsnippet
+
+snippet cerre "Inserts a std::cerr instruction terminated by std::endl"
+std::cerr << ${1} << std::endl;
+endsnippet
+
+snippet cerRe "Inserts a std::cerr with quote marks terminated by std::endl"
+std::cerr << "${1}" << std::endl;
 endsnippet
 
 snippet endl "Inserts 'std::endl'"
 std::endl
+endsnippet
+
+snippet endl; "inserts 'std::endl;'"
+std::endl;
+endsnippet
+
+snippet euler "Inserts a HackerRank's ProjectEuler answer's header" b
+/**
+ * Solution to the challenge #${1:000} of Project Euler series on HackerRank:
+ * https://www.hackerrank.com/contests/projecteuler/challenges/euler$1
+ * Created on: `!v strftime('%d-%m-%Y')`
+ * Last Modified: `!v strftime('%d-%m-%Y')`
+ * Author: Adam Gralinski (adam@gralin.ski)
+ * License: ${3:MIT}
+ */
+
+#include <iostream>
+#include <cstdint>
+
+int main()
+{
+  testcases${0}
+  return 0;
+}
+endsnippet
+
+snippet fora "inserts a for clause with an auto statement" b
+for (auto& ${1:v} : ${2:container})
+{
+  ${3:;}
+}
 endsnippet
 
 snippet inc "Inserts the #include <...> snippet without the .h extension" b
@@ -41,7 +96,7 @@ snippet Inc "Inserts the complementing hpp file" b
 endsnippet
 
 snippet map "Inserts a std::map<k,v>"
-std::map< ${1:key}, ${2:value} > m$0;
+std::map<${1:int}, ${2:int}> ${3:m};
 endsnippet
 
 snippet ns "Inserts a namespace" b
@@ -53,6 +108,20 @@ $0
 } // namespace $1
 endsnippet
 
+snippet once "Inserts a #pragma once" b
+#pragma once
+$0
+endsnippet
+
+snippet testcases "Inserts a code that reads a number of testcases and does this many actions in a loop." b
+${1:int} T;
+std::cin >> T;
+for ($1 t = 0; t < T; ++t)
+{
+  ${0}
+}
+endsnippet
+
 snippet vector "Inserts a std::vector<type>"
-std::vector< ${1:int} > v$0;
+std::vector<${1:int}> ${2:v};
 endsnippet
