@@ -1,0 +1,27 @@
+snippet #! "Inserts a python3 header with shebang" b
+#!/usr/bin/env python3
+endsnippet
+
+snippet header "inserts a header describing a python script" b
+# Name:          `!p snip.rv = snip.fn`
+# Description:   ${1:TODO}
+# Options:       ${2:None}
+# Created on:    `!v strftime("%d.%m.%Y")`
+# Last modified: `!v strftime("%d.%m.%Y")`
+# Author:        Adam Graliński (adam@gralin.ski)
+# License:       ${3:MIT}
+$0
+endsnippet
+
+snippet main "Inserts main function with launcher" b
+def main():
+    pass
+
+if __name__ == "__main__":
+    main()
+endsnippet
+
+snippet scriptdir "Inserts a code returning the script's root directory" b
+import os
+DIR_SCRIPT_ROOT = os.path.dirname(os.path.realpath(__file__))
+endsnippet

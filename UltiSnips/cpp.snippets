@@ -1,6 +1,26 @@
 extends c
 priority 1
 
+snippet aoc "Inserts an AoC answer's template" b
+/**
+ * Name: `!p snip.rv = snip.basename`
+ * Description: Answers the AoC2018 day#${1:01} challenge
+ * Created on: `!v strftime('%d.%m.%Y')`
+ * Last modified: `!v strftime('%d.%m.%Y')`
+ * Author: Adam Gralinski (adam@gralin.ski)
+ * License: ${2:CC0}
+ */
+
+#include <iostream>
+#include <cstdint>
+
+int main(int, char**)
+{
+  testcases${0}
+  return 0;
+}
+endsnippet
+
 snippet cin "Inserts a std::cin instruction"
 std::cin >> ${0};
 endsnippet
@@ -63,8 +83,8 @@ snippet euler "Inserts a HackerRank's ProjectEuler answer's header" b
 /**
  * Solution to the challenge #${1:000} of Project Euler series on HackerRank:
  * https://www.hackerrank.com/contests/projecteuler/challenges/euler$1
- * Created on: `!v strftime('%d-%m-%Y')`
- * Last Modified: `!v strftime('%d-%m-%Y')`
+ * Created on: `!v strftime('%d.%m.%Y')`
+ * Last modified: `!v strftime('%d.%m.%Y')`
  * Author: Adam Gralinski (adam@gralin.ski)
  * License: ${3:MIT}
  */
@@ -86,9 +106,27 @@ for (auto& ${1:v} : ${2:container})
 }
 endsnippet
 
+snippet hrank "Inserts a HackerRank's common answer header" b
+/**
+ * Solution to the "${1:name}" challenge from HackerRank:
+ * ${2:(link)}
+ * Created on: `!v strftime('%d.%m.%Y')`
+ * Last modified: `!v strftime('%d.%m.%Y')`
+ * Author: Adam Gralinski (adam@gralin.ski)
+ * License: ${3:MIT}
+ */
+
+#include <bits/stdc++.h>
+
+int main(int, char**)
+{
+  testcases${0}
+  return 0;
+}
+endsnippet
+
 snippet inc "Inserts the #include <...> snippet without the .h extension" b
 #include <${1:iostream}>
-$0
 endsnippet
 
 snippet Inc "Inserts the complementing hpp file" b

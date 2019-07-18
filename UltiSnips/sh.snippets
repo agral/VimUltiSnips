@@ -6,13 +6,63 @@ snippet shebang "inserts a bash shebang" b
 #!/usr/bin/env bash
 endsnippet
 
-snippet header "inserts a header describing the script" b
+snippet colors "inserts a bunch of colors' definitions" b
+# Basic colors' definitions:
+colorNONE="\033[0m"       # resets color to terminal's FG color.
+colorK="\033[0;30m"       # regular black
+colorR="\033[0;31m"       # regular red
+colorG="\033[0;32m"       # regular green
+colorY="\033[0;33m"       # regular yellow
+colorB="\033[0;34m"       # regular blue
+colorM="\033[0;35m"       # regular magenta
+colorC="\033[0;36m"       # regular cyan
+colorW="\033[0;37m"       # regular white
+colorKEM="\033[1;30m"     # bold black
+colorREM="\033[1;31m"     # bold red
+colorGEM="\033[1;32m"     # bold green
+colorYEM="\033[1;33m"     # bold yellow
+colorBEM="\033[1;34m"     # bold blue
+colorMEM="\033[1;35m"     # bold magenta
+colorCEM="\033[1;36m"     # bold cyan
+colorWEM="\033[1;37m"     # bold white
+endsnippet
+
+snippet header "inserts a header describing a shell script" b
 # Name:          `!p snip.rv = snip.basename`
 # Description:   ${1:TODO}
 # Options:       ${2:None}
-# Created on:    `!v strftime("%d-%m-%Y")`
-# Last modified: `!v strftime("%d-%m-%Y")`
+# Created on:    `!v strftime("%d.%m.%Y")`
+# Last modified: `!v strftime("%d.%m.%Y")`
 # Author:        Adam Graliński (adam@gralin.ski)
 # License:       ${3:MIT}
 $0
+endsnippet
+
+snippet params "inserts a code that handles positional parameters" b
+while [ "${#}" -gt 0 ]; do
+  case "\${1}" in
+    -${1:y}|--${2:yes})
+      ${3:OVERRIDE_YES=1}
+    ;;
+  esac
+  shift
+done
+${0}
+endsnippet
+snippet args "converts to params" b
+params
+endsnippet
+snippet arguments "converts to params" b
+params
+endsnippet
+
+snippet terminate "inserts a function that fails the script gracefully" b
+terminate_with_reason() {
+  local EXITCODE=1
+  if [ ${#} -ge 2 ]; then
+    EXITCODE="\${2}"
+  fi
+  >&2 printf "Error: ${colorREM}%s\nAborting.\n${colorNONE}" "\${1}"
+  exit ${EXITCODE}
+}
 endsnippet
