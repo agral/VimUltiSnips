@@ -26,6 +26,14 @@ snippet @w "inserts the workplace email address"
 adam.szczerbiak@huuugegames.com
 endsnippet
 
+snippet header "Inserts a simple document header" b
+Name: ${1:`!v expand('%:t')`}
+Description: ${2:TODO}
+Created on: `!v strftime('%d.%m.%Y')`
+Last modified: `!v strftime('%d.%m.%Y')`
+Author: Adam Graliński (adam@gralin.ski)
+License: ${3:MIT}
+endsnippet
 
 snippet MIT "inserts the contents of a MIT license" b
 MIT License
