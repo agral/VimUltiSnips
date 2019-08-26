@@ -1,0 +1,18 @@
+extends cpp
+priority 2
+
+snippet header "Inserts the hpp document header" b
+/**
+ * Name: ${1:`!v expand('%:t')`}
+ * Description: Provides an interface to a class representing ${2:...}
+ * Created on: `!v strftime('%d.%m.%Y')`
+ * Last modified: `!v strftime('%d.%m.%Y')`
+ * Author: Adam Graliński (adam@gralin.ski)
+ * License: ${3:MIT}
+ */
+endsnippet
+
+snippet once "Inserts a #pragma once" b
+#pragma once
+$0
+endsnippet
