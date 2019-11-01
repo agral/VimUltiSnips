@@ -3,9 +3,19 @@ snippet a "inserts a hyperlink"
 endsnippet
 
 snippet div "inserts a DIV tag"
-<div id="${1:unique_id}">
+<div>$0</div>
+endsnippet
+
+snippet divc "inserts a DIV tag of given class"
+<div class="$1">
 $0
-</div> <!-- $1 -->
+</div><!-- $1 -->
+endsnippet
+
+snippet divi "inserts a DIV tag of given ID"
+<div id="$1">
+$0
+</div><!-- $1 -->
 endsnippet
 
 snippet h1 "Inserts a H1 tag" b
