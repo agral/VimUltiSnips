@@ -29,11 +29,10 @@ snippet class "Inserts a class" b
 class ${1:`!p snip.rv = snip.basename`}
 {
  public:
-  ${1/(\w+).*/$1/}(${2:args});
+  ${1/(\w+).*/$1/}(${2});
   virtual ~${1/(\w+).*/$1/}();
 
  private:
-  ${2: /* code */}
 };
 
 $0
@@ -47,14 +46,6 @@ snippet couT "Inserts a std::cout instruction with quote marks"
 std::cout << "${1}"
 endsnippet
 
-snippet coute "Inserts a std::cout with std::endl"
-std::cout << ${1} << std::endl;
-endsnippet
-
-snippet couTe "Inserts a std::cout with quote marks terminated by std::endl"
-std::cout << "${1}" << std::endl;
-endsnippet
-
 snippet cerr "Inserts a std::cerr instruction"
 std::cerr << ${1}
 endsnippet
@@ -63,12 +54,10 @@ snippet cerR "Inserts a std::cerr with quote marks"
 std::cerr << "${1}"
 endsnippet
 
-snippet cerre "Inserts a std::cerr instruction terminated by std::endl"
-std::cerr << ${1} << std::endl;
-endsnippet
-
-snippet cerRe "Inserts a std::cerr with quote marks terminated by std::endl"
-std::cerr << "${1}" << std::endl;
+snippet else "Inserts an else clause for a conditional"
+else {
+  $0
+}
 endsnippet
 
 snippet endl "Inserts 'std::endl'"
@@ -99,9 +88,14 @@ int main()
 }
 endsnippet
 
-snippet fora "inserts a for clause with an auto statement" b
-for (auto& ${1:v} : ${2:container})
-{
+snippet for "inserts a for-loop" b
+for (${1}) {
+  $0
+}
+endsnippet
+
+snippet fora "inserts a for-loop with an auto statement" b
+for (auto& ${1:v} : ${2:container}) {
   ${3:;}
 }
 endsnippet
@@ -137,7 +131,16 @@ int main(int, char**)
 }
 endsnippet
 
+snippet if "Inserts an empty if conditional" b
+if (${1:true}) {
+  $0
+}
+endsnippet
+
 snippet inc "Inserts the #include <...> snippet without the .h extension" b
+#include <${1:iostream}>
+endsnippet
+snippet #inc "Inserts the #include <...> snippet without the .h extension" b
 #include <${1:iostream}>
 endsnippet
 
@@ -158,11 +161,15 @@ $0
 } // namespace $1
 endsnippet
 
+snippet once "Inserts a #pragma once directive" b
+#pragma once
+$0
+endsnippet
+
 snippet testcases "Inserts a code that reads a number of testcases and does this many actions in a loop." b
 ${1:int} T;
 std::cin >> T;
-for ($1 t = 0; t < T; ++t)
-{
+for ($1 t = 0; t < T; ++t) {
   ${0}
 }
 endsnippet
