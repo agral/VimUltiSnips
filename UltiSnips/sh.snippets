@@ -30,6 +30,13 @@ colorCEM="\033[1;36m"     # bold cyan
 colorWEM="\033[1;37m"     # bold white
 endsnippet
 
+snippet for "inserts a for clause that loops over array elements" b
+for ${1:elem} in "\${${2:arrayName}[@]}"; do
+  echo "\${$1}"
+done
+$0
+endsnippet
+
 snippet header "inserts a header describing a shell script" b
 # Name:          `!p snip.rv = snip.basename`
 # Description:   ${1:TODO}
@@ -57,6 +64,25 @@ params
 endsnippet
 snippet arguments "converts to params" b
 params
+endsnippet
+
+snippet require "inserts a functon that fails if a program (given) is not installed" b
+require() {
+  >/dev/null 2>&1 command -v "\${1}" || {
+    >&2 echo "Error: \\`${1}\` required but it's not installed."
+    exit 1
+  }
+}
+endsnippet
+
+snippet SCRIPT_NAME "Stores the script's name to a variable" b
+SCRIPT_NAME="$(basename "$(test -L "\${0}" && readlink "\${0}" || echo "\${0}")")"
+endsnippet
+snippet script_name "converts to SCRIPT_NAME" b
+SCRIPT_NAME
+endsnippet
+snippet scriptname "converts to SCRIPT_NAME" b
+SCRIPT_NAME
 endsnippet
 
 snippet terminate "inserts a function that fails the script gracefully" b
