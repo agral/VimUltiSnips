@@ -1,0 +1,40 @@
+snippet hrank "Inserts a HackerRank's common answer header" b
+/*
+ * Solution to the "${1:name}" challenge from HackerRank:
+ * ${2:(link)}
+ * Created on: `!v strftime('%d.%m.%Y')`
+ * Last modified: 17.03.2020
+ * Author: Adam Gralinski (adam@gralin.ski)
+ * License: ${3:MIT}
+ */
+
+import java.io.*;
+import java.util.*;
+
+public class $1
+{
+  private static final Scanner scanner = new Scanner(System.in);
+
+  public static void main(String[] args) {
+  }
+}
+endsnippet
+snippet pr "Inserts a System.out.print() statement" b
+System.out.print(${1:"foo"})
+endsnippet
+
+snippet prn "Inserts a System.out.println() statement" b
+System.out.println(${1:"foo"})
+endsnippet
+
+snippet psvm "Inserts a public static void main method" b
+public static void main(String[] args) {
+  $0
+}
+endsnippet
+
+snippet class "Inserts a java class" b
+class ${1:Foo} {
+  $0
+}
+endsnippet
