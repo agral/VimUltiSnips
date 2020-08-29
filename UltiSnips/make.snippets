@@ -1,3 +1,6 @@
+extends all
+priority 1
+
 snippet header "Inserts a Makefile header" b
 # A Makefile for ${1:...}
 # Created on: `!v strftime('%d.%m.%Y')`
@@ -9,28 +12,28 @@ rules_cpp
 endsnippet
 
 snippet rules_cpp  "Inserts rules to build a typical CPP project" b
-PROGRAM_NAME := "${1:a.out}"
-EXE_NAME_APP := ${PROGRAM_NAME}
-CXX := g++
-CXXFLAGS := -g -c -Wall -Wextra -Wpedantic -D_REENTRANT -std=c++17
-LDFLAGS :=
-LDLIBS :=
+PROGRAM_NAME="${1:a.out}"
+EXE_NAME_APP=${PROGRAM_NAME}
+CXX=clang++
+CXXFLAGS=-g -c -Wall -Wextra -Wpedantic -D_REENTRANT -std=c++20
+LDFLAGS=
+LDLIBS=
 
-DIR_SRC := src
-DIR_BIN := bin
-DIR_OBJ := ${DIR_BIN}/obj
+DIR_SRC=src
+DIR_BIN=bin
+DIR_OBJ=${DIR_BIN}/obj
 
-SOURCES_APP := $(shell find ${DIR_SRC} -name "*.cpp")
-OBJECTS_APP := $(patsubst ${DIR_SRC}/%.cpp,${DIR_OBJ}/%.o,${SOURCES_APP})
+SOURCES_APP=$(shell find ${DIR_SRC} -name "*.cpp")
+OBJECTS_APP=$(patsubst ${DIR_SRC}/%.cpp,${DIR_OBJ}/%.o,${SOURCES_APP})
 
 dir_guard=@mkdir -p $(@D)
 
 .PHONY: all clean run
 
 # Makes the parameterless `make` invocation build the app, as long as this line is the first rule:
-${PROGRAM_NAME} : ${DIR_BIN}/${EXE_NAME_APP}
+${PROGRAM_NAME}: ${DIR_BIN}/${EXE_NAME_APP}
 
-all: ${DIR_BIN}/${EXE_NAME_APP} ${DIR_BIN}/${EXE_NAME_TEST}
+all: ${DIR_BIN}/${EXE_NAME_APP}
 
 clean:
 	@rm -fv ${OBJECTS_APP}
@@ -41,12 +44,12 @@ run: ${DIR_BIN}/${EXE_NAME_APP}
 
 ### Auto-rules: ###
 # Creates an application's executable by linking all the app object files:
-${DIR_BIN}/${EXE_NAME_APP} : ${OBJECTS_APP}
+${DIR_BIN}/${EXE_NAME_APP}: ${OBJECTS_APP}
 	@${dir_guard}
 	${CXX} ${LDFLAGS} -o ${@} ${OBJECTS_APP} ${LDLIBS}
 
 # Compiles a single file of application's source code to an object file:
-${DIR_OBJ}/%.o : ${DIR_SRC}/%.cpp
+${DIR_OBJ}/%.o: ${DIR_SRC}/%.cpp
 	@${dir_guard}
 	${CXX} ${CXXFLAGS} ${<} -o ${@}
 endsnippet
