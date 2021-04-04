@@ -1,6 +1,22 @@
 extends all
 priority 1
 
+snippet new "inserts a html boilerplate code" b
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon.png">
+ <title>${1:New Project}</title>
+ <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+${2:This is a new webpage}
+</body>
+</html>
+endsnippet
+
 snippet a "inserts a hyperlink"
 <a href="${1:#}" alt="${2:#}">${3:text}</a>
 endsnippet
@@ -12,13 +28,13 @@ endsnippet
 snippet divc "inserts a DIV tag of given class"
 <div class="$1">
 $0
-</div><!-- $1 -->
+</div><!-- div.$1 -->
 endsnippet
 
 snippet divi "inserts a DIV tag of given ID"
 <div id="$1">
 $0
-</div><!-- $1 -->
+</div><!-- div#$1 -->
 endsnippet
 
 snippet h1 "Inserts a H1 tag" b
