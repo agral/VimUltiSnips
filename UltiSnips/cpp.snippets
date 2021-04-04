@@ -4,19 +4,36 @@ priority 2
 snippet aoc "Inserts an AoC answer's template" b
 /**
  * Name: `!p snip.rv = snip.basename`
- * Description: Answers the AoC2018 day#${1:01} challenge
+g * Description: Answers the AoC2019 day#${1:01} challenge
  * Created on: `!v strftime('%d.%m.%Y')`
  * Last modified: `!v strftime('%d.%m.%Y')`
  * Author: Adam Gralinski (adam@gralin.ski)
  * License: ${2:CC0}
  */
 
+#include <algorithm>
+#include <fstream>
 #include <iostream>
-#include <cstdint>
+#include <sstream>
+#include <string>
+#include <vector>
+
+const auto INPUT_FILENAME = std::string("aoc2019_day$1_input.txt");
 
 int main(int, char**)
 {
-  testcases${0}
+  std::ifstream inputFile;
+  inputFile.open(INPUT_FILENAME);
+  if (inputFile.is_open()) {
+    std::string line;
+    while (std::getline(inputFile, line)) {
+      $0
+    }
+  }
+  else {
+    std::cerr << "Could not open file " << INPUT_FILENAME << " for reading.\n";
+  }
+
   return 0;
 }
 endsnippet
