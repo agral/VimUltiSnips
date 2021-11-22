@@ -1,29 +1,75 @@
+priority -10
+
+global !p
+from vimsnippets import select_from_list
+from personal_data import PersonalData
+endglobal
+
+snippet PI "inserts value of constant PI"
+3.14159265359
+endsnippet
+
+snippet E "inserts value of constant E"
+2.71828182845
+endsnippet
+
+snippet PHI "inserts value of the golden ratio"
+1.61803398875
+endsnippet
+snippet GOLDEN "inserts value of the golden ratio"
+PHI
+endsnippet
+
+snippet header "Inserts a simple document header" b
+Name: `!v expand('%:t')`
+Description: ${2:None}
+Created on: `!v strftime('%d.%m.%Y')`
+Last modified: `!v strftime('%d.%m.%Y')`
+Author: Adam Graliński (https://gralin.ski)
+License: ${3:license}
+$0
+endsnippet
+
+snippet ruler "inserts a 00 to 99 ruler (two lines)" b
+0000000000111111111122222222223333333333444444444455555555556666666666777777777788888888889999999999
+0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789
+endsnippet
+
+snippet mail "inserts one of the predefined email addresses"
+$1`!p snip.rv = select_from_list(t[1], PersonalData.EMAIL_ADDRESSES)`
+endsnippet
+
+snippet lipsum "Inserts a lorem ipsum text filler"
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+endsnippet
+
+### Date and time insertion:
 snippet date "inserts current date formatted as dd.mm.yyyy"
 `!v strftime("%d.%m.%Y")`
 endsnippet
-
 snippet time "inserts current time formatted as HH:MM:SS"
 `!v strftime("%H:%M:%S")`
 endsnippet
-
-snippet @@ "inserts a name and an email address"
-Adam Graliński (adam@gralin.ski)
+snippet isodate "inserts current date in ISO 8601 format"
+`!v strftime("%Y-%m-%d")`
+endsnippet
+snippet isotime "inserts current time in ISO 8601 format: THH:MM:SSZ"
+`!v strftime("T%H:%M:%SZ")`
+endsnippet
+snippet isodatetime "inserts current date and time in ISO 8601 format: YYYY-mm-ddTHH:MM:SSZ"
+`!v strftime("%Y-%m-%dT%H:%M:%SZ")`
+endsnippet
+snippet usdate "inserts current date in US format: mm/dd/YYYY"
+`!v strftime("%m/%d/%Y")`
 endsnippet
 
-snippet name "inserts first and last name"
+snippet ag "inserts first and last name"
 Adam Graliński
 endsnippet
 
-snippet @ "inserts main email address"
-adam@gralin.ski
-endsnippet
-
-snippet @s "inserts the spam email address"
-asz101.allegro@gmail.com
-endsnippet
-
-snippet @w "inserts the workplace email address"
-adam.szczerbiak@huuugegames.com
+### Licenses:
+snippet license "lets the user select one of predefined software licenses"
+$1`!p snip.rv = select_from_list(t[1], ["Proprietary", "CC0", "MIT"])`
 endsnippet
 
 snippet CC0 "Inserts the contents of Creative Commons Zero license" b
@@ -149,24 +195,6 @@ express Statement of Purpose.
     this CC0 or use of the Work.
 endsnippet
 
-snippet header "Inserts a simple document header" b
-Name: ${1:`!v expand('%:t')`}
-Description: ${2:TODO}
-Created on: `!v strftime('%d.%m.%Y')`
-Last modified: `!v strftime('%d.%m.%Y')`
-Author: Adam Graliński (adam@gralin.ski)
-License: ${3:MIT}
-$0
-endsnippet
-
-snippet latex "converts latex to LaTeX"
-LaTeX
-endsnippet
-
-snippet lipsum "Inserts a lorem ipsum text filler"
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-endsnippet
-
 snippet MIT "inserts the contents of a MIT license" b
 MIT License
 
@@ -216,20 +244,4 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to <http://unlicense.org>$0
-endsnippet
-
-snippet PI "inserts value of constant PI"
-3.14159265359
-endsnippet
-
-snippet E "inserts value of constant E"
-2.71828182845
-endsnippet
-
-snippet GOLDEN "inserts value of the golden ratio"
-1.61803398875
-endsnippet
-
-snippet PHI "inserts value of the golden ratio"
-GOLDEN
 endsnippet
